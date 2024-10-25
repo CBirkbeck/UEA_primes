@@ -1,0 +1,400 @@
+<!doctype html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+
+        <title>Prime Numbers</title>
+
+        <meta name="description" content="Prime Numbers Presentation">
+        <meta name="author" content="Sinéad Lyle">
+
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <link rel="stylesheet" href="dist/reset.css">
+        <link rel="stylesheet" href="dist/reveal.css">
+        <link rel="stylesheet" href="dist/theme/black.css" id="theme">
+
+        <!-- Theme used for syntax highlighting of code -->
+        <link rel="stylesheet" href="plugin/highlight/monokai.css">
+        <style>
+        pre code {
+            font-size: 0.7em;
+        }
+        </style>
+         <script type="module">
+            import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@9/dist/mermaid.esm.min.mjs';
+            mermaid.initialize({
+                startOnLoad: true,
+                theme: 'base',
+                themeVariables: {
+                    primaryColor: 'rgba(255, 255, 255, 0.050)',
+                    primaryTextColor: '#fff',
+                    primaryBorderColor: 'rgba(255, 255, 255, 0.18)',
+                    boxShadow: '0 8px 12px rgba(0,0,0,0.1)',
+                    nodeBorderRadius: '15px',
+                    padding: '20px',
+                    margin: '10px',
+                    minWidth: '400px',
+                    backdropFilter: 'blur(20px)',
+                    webkitBackdropFilter: 'blur(20px)',
+                    fontWeight: 'bold',
+                    textAlign: 'center',
+                    lineHeight: '2'
+                }
+            });
+        </script>
+        <style>
+        .reveal .slides {
+            width: 100%;
+            height: auto;
+        }
+        </style>
+        <style>
+        /* Custom CSS for theorem and definition */
+        .reveal .theorem, .reveal .definition {
+            margin: 2em 0;
+            padding: 1em 1em;
+            border-left: 5px solid #3498db;
+            border-right: 5px solid #3498db;
+            background-color: #2c3e50; /* Dark grey background */
+            color: #ffffff;
+        }
+
+        .reveal .theorem p:first-child, .reveal .definition p:first-child {
+            margin-top: 0;
+        }
+
+        .reveal .theorem p:last-child, .reveal .definition p:last-child {
+            margin-bottom: 0;
+        }
+        </style>
+        <script>
+            document.addEventListener("DOMContentLoaded", event => {
+              // we can move only if we are not in a browser's tab
+              isBrowser = matchMedia("(display-mode: browser)").matches;
+              if (!isBrowser) {
+                  window.resizeTo(1024, 768);
+              }
+            });
+          </script>
+        <style>
+        .bento-box {
+          display: flex;
+          justify-content: space-around;
+          flex-wrap: wrap;
+          margin-top: 20px;
+        }
+
+        .bento-box .box {
+          flex: 1;
+          margin: 10px;
+          padding: 20px;
+          background-color:#2c3e50; /* Light grey background */
+          border-radius: 15px; /* Rounded corners */
+          box-shadow: 0 4px 6px rgba(0,0,0,0.1); /* Soft shadow */
+          min-width: 250px; /* Minimum width of boxes */
+          text-align: center; /* Center text */
+        }  
+
+        .box .inner-box {
+            background-color: #e0e0e0; /* Slightly different background to distinguish */
+            margin-bottom: 10px; /* Space between the two inner boxes */
+            padding: 10px;
+            border-radius: 10px; /* Optional: rounded corners for inner boxes */
+            }
+
+            /* Last inner-box should not have a margin at the bottom */
+            .box .inner-box:last-child {
+            margin-bottom: 0;
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <div class="reveal" >
+
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+                <!-- Title Slide -->
+                <section data-background-gradient="linear-gradient(to bottom, #283b95, #17b2c3)">
+                    <h2> <span style="text-transform: none;  color: #000000">Prime numbers</span> </h2>
+                    <p>
+                        <small>Chris Birkbeck</small>
+                    </p>
+                    <p>
+                        <small>University of East Anglia</small>
+                    </p>
+                    <small style="display: block; text-align: center; opacity: 0.5">26th October 2024</small>
+                    <div style="text-align: center;">
+                        <img src="UEAOrange.png" alt="UEA Logo" style="height: 100px;">
+                    </div>
+                </section>
+
+
+				<section data-markdown data-auto-animate data-background-gradient="linear-gradient(to bottom, #283b95, #17b2c3)">
+					<textarea data-template>
+						### <span style="text-transform: none;">Prime numbers</span>
+						---
+						### <span style="text-transform: none;">Prime numbers</span>
+						<div class="definition">
+							<strong>Primes </strong>: 
+							An integer $p \geq 2$ is said to be prime if its only positive divisors are 1 and $p$
+						</div>
+						---
+						### <span style="text-transform: none;">Prime numbers</span>
+						<div class="definition">
+							<strong>Primes </strong>: 
+							An integer $p \geq 2$ is said to be prime if its only positive divisors are 1 and $p$
+						</div>
+						For example:  $2, 3, 5, \ldots,37, \ldots,197, \ldots $ <span style="text-transform: none; color: #000000">are prime</span>.
+						---
+						### <span style="text-transform: none;">Prime numbers</span>
+						<div class="definition">
+							<strong>Primes </strong>: 
+							An integer $p \geq 2$ is said to be prime if its only positive divisors are 1 and $p$
+						</div>
+						For example:  $1, 4, 6, 8, 9, \ldots 153, \ldots 201, \ldots $ are <span style="text-transform: none; color: #000000">not</span> prime.
+						---
+						### <span style="text-transform: none;">How many primes are there?</span>
+						---
+						### <span style="text-transform: none; color: #000000">True of False?</span>
+						- There are infinitely many primes.
+						---
+						### <span style="text-transform: none; color: #000000">True of False?</span>
+						- There are infinitely many primes.
+						- <strong>Answer:</strong><span style="text-transform: none; color: #000000">True</span> 
+						---
+						### <span style="text-transform: none; color: #000000">True of False?</span>
+						- There are infinitely many primes.
+						- <strong>Answer:</strong><span style="text-transform: none; color: #000000">True</span> 
+						- A proof of this result appeared in Euclid's <em>Elements</em> written around 300 BC.</p>
+						---
+						<div class="definition">
+							<strong>Corollary:</strong>
+							<p>Choose any large integer $N$. Then there are (infinitely many) primes bigger than $N$.</p>
+							</div>
+						---
+						### <span style="text-transform: none;">Largest Known Prime</span>
+						---
+						### <span style="text-transform: none; color: #000000">True of False?</span>
+						- As of October 2024, the largest known prime has $24,862,048$ digits.	
+						---
+						### <span style="text-transform: none; color: #000000">True of False?</span>
+						- As of October 2024, the largest known prime has $24,862,048$ digits.	
+						- <strong>Answer:</strong> <span style="text-transform: none; color: #000000">False</span> 
+						---
+						### <span style="text-transform: none; color: #000000">True of False?</span>
+						- The largest known prime is $$2^{136,279,841} - 1$$ which has $41,024,320$ digits. 
+						---
+						### <span style="text-transform: none; color: #000000">True of False?</span>
+						- The largest known prime is $$2^{136,279,841} - 1$$ which has $41,024,320$ digits. 
+						- It was discovered 2 weeks ago!
+						---
+						### <span style="text-transform: none; color: #000000">Mersenne Primes</span>
+						<div class="definition">
+							<strong>Definition:</strong>
+							<p>A prime of the form $2^n - 1$ is called a Mersenne prime.</p>
+							</div>
+						---
+						### <span style="text-transform: none;  color: #000000">Mersenne Primes</span> 
+						-   $3 = 2^2 - 1$ 
+						---
+						### <span style="text-transform: none; color: #000000">Mersenne Primes</span> 
+						-   $3 = 2^2 - 1$ 
+						- $7 = 2^3 - 1$ 
+						---
+						### <span style="text-transform: none; color: #000000">Mersenne Primes</span> 
+						-   $3 = 2^2 - 1$ 
+						- $7 = 2^3 - 1$ 
+						- $31 = 2^5 - 1$, 
+						---
+						### <span style="text-transform: none; color: #000000">Mersenne Primes</span> 
+						-   $3 = 2^2 - 1$ 
+						- $7 = 2^3 - 1$ 
+						- $31 = 2^5 - 1$, 
+						- $127 = 2^7 - 1 $ 
+						---
+						### <span style="text-transform: none; color: #000000">Mersenne Primes</span> 
+						But $2^{11} - 1$ is not a (Mersenne) prime.
+						---
+						<div class="definition">
+							<strong>Proposition:</strong>
+							<p>If \( n \) is composite then \( 2^n - 1 \) is composite. 
+							</div>
+						---
+						<div class="definition">
+							<strong>Proposition:</strong>
+							<p>If \( n \) is composite then \( 2^n - 1 \) is composite. 
+							</div>
+						For example:
+							<p>
+								\( 2^{15} - 1 = (2^3 - 1)(2^{12} + 2^9 + 2^6 + 2^3 + 1) \).
+							</p>
+						---
+						### <span style="text-transform: none; color: #000000;">The Lucas-Lehmer Test</span>
+						- The Lucas-Lehmer test was developed by Lucas in 1876 improved
+							by Lehmer 1930s. 
+						- It is a very fast test that will determine whether
+							an integer of the form $2^p-1$ where p is prime, is itself prime. 
+						---
+						### <span style="text-transform: none; color: #000000;">The Lucas-Lehmer Test</span>
+						In 1771, Euler showed that $$2^{31}− 1 = 2, 147, 483, 647$$ was prime
+						using enhanced trial division. Lucas-Lehmer confirms this!
+						---
+						### <span style="text-transform: none;">How Many Mersenne Primes $2^p - 1$ are There?</span>		
+						---
+						### <span style="text-transform: none; color: #000000">True of False?</span>
+						- There are infinitely many Mersenne primes.
+						---
+						### <span style="text-transform: none; color: #000000">True of False?</span>
+						- There are infinitely many Mersenne primes.
+						- Answer: <span style="text-transform: none; color: #000000">Nobody knows</span>
+						---
+						### <span style="text-transform: none; color: #000000">Mersenne Primes $2^p - 1$</span>	
+						- Only 52 Mersenne primes are known.
+						---
+						### <span style="text-transform: none; color: #000000">Mersenne Primes $2^p - 1$</span>	
+						- Only 52 Mersenne primes are known.
+						- All $2^p - 1$ with $p$ up to ~136 million have been checked.
+						---
+						### <span style="text-transform: none; color: #000000">Mersenne Primes $2^p - 1$</span>	
+						- Only 52 Mersenne primes are known.
+						- All $2^p - 1$ with $p$ up to ~136 million have been checked.
+						- Recall that the largest known prime is $2^{136,279,841} - 1$.
+						---
+						### <span style="text-transform: none; color: #000000">Twin Primes</span>
+						<div class="definition">
+							<strong>Definition:</strong>
+							<p>We say two primes $p,q$ are twin primes</p> 
+							<p>if $p = q + 2$ </p>
+							</div>
+						---
+						###  <span style="text-transform: none; color: #000000">Twin Primes</span>
+						<div class="definition">
+							<strong>Definition:</strong>
+							<p>We say two primes $p,q$ are twin primes</p> 
+							<p>if $p = q + 2$ </p>
+							</div>
+						For example: $11$ and $13$ are twin primes, as are $17$ and $19$.	
+						---
+						### <span style="text-transform: none; color: #000000">True, False, or Nobody Knows?</span>
+						Are there infinitely many twin primes?
+						---
+						### <span style="text-transform: none; color: #000000">True, False, or Nobody Knows?</span>
+						Are there infinitely many twin primes?
+						- Answer: <span style="text-transform: none; color: #000000">Nobody knows</span>
+						---
+						### <span style="text-transform: none; color: #000000">Twin primes</span>
+						- Conjectured in 1849 that there are, but nobody knows for sure.
+						---
+						### <span style="text-transform: none; color: #000000">Twin primes</span>
+						- Conjectured in 1849 that there are, but nobody knows for sure.
+						- In 2013, Zhang proved that there are infinitely many prime pairs with a gap of no more than 70 million.
+						---
+						### <span style="text-transform: none; color: #000000">Twin primes</span>
+						- Conjectured in 1849 that there are, but nobody knows for sure.
+						- In 2013, Zhang proved that there are infinitely many prime pairs with a gap of no more than 70 million.
+						- By 2014, it had been proved that there are infinitely many prime pairs with a gap of no more than 246.
+						---
+						### <span style="text-transform: none; color: #000000">Twin primes</span>
+						- Conjectured in 1849 that there are, but nobody knows for sure.
+						- In 2013, Zhang proved that there are infinitely many prime pairs with a gap of no more than 70 million.
+						- By 2014, it had been proved that there are infinitely many prime pairs with a gap of no more than 246.
+						- There's a Numberphile video: <em>Twin Prime Conjecture</em> which you can find on YouTube.
+						---
+						### <span style="text-transform: none; color: #000000">Goldbach (1742)</span>
+						- Can every even number $n \geq 4$ be written as the sum of 2 prime numbers?
+						---
+						### <span style="text-transform: none; color: #000000">Goldbach (1742)</span>
+						- Can every even number $n \geq 4$ be written as the sum of 2 prime numbers?
+						- For example: $4 = 2 + 2, 6 = 3 + 3, 8 = 3 + 5, 10 = 3 + 7, \ldots$ 
+						---
+						### Answer: <span style="text-transform: none; color: #000000">Nobody knows</span>
+						$$2n = p + q$$
+						---
+						
+						- But we do know that every odd number greater than $5$ can be written as the sum of 3 primes $$2n+5 = p + q + r.$$
+						---
+						### 
+						- But we do know that every odd number greater than $5$ can be written as the sum of 3 primes $$2n+5 = p + q + r.$$
+						- This is called the Weak Goldbach Conjecture. 
+						---
+						### 
+						- But we do know that every odd number greater than $5$ can be written as the sum of 3 primes $$2n+5 = p + q + r.$$
+						- This is called the Goldbach's weak Conjecture. 
+						- In 2013,<span style="text-transform: none; color: #000000">Harald Helfgott</span> released a proof of Goldbach's weak conjecture. 
+						---
+						### <span style="text-transform: none; color: #000000">Uses of Prime Numbers Today</span>
+						- Public Key Cryptography
+						---
+						### <span style="text-transform: none; color: #000000">Uses of Prime Numbers Today</span>
+						- Public Key Cryptography
+						- RSA is a form of public key encryption first described in 1973.
+						---
+						### <span style="text-transform: none; color: #000000">Uses of Prime Numbers Today</span>
+						- Public Key Cryptography
+						- RSA is a form of public key encryption first described in 1973.
+						- Relies on certain properties of prime numbers.
+						---
+						### <span style="text-transform: none; color: #000000">Uses of Prime Numbers Today</span>
+						- Public Key Cryptography
+						- RSA is a form of public key encryption first described in 1973.
+						- Relies on certain properties of prime numbers.
+						- Used in web browsers, email, VPNs, chat, and other communication channels.
+					</textarea>
+				</section>
+
+
+            </div>
+
+        </div>
+
+        <script src="dist/reveal.js"></script>
+        <script src="plugin/zoom/zoom.js"></script>
+        <script src="plugin/notes/notes.js"></script>
+        <script src="plugin/search/search.js"></script>
+        <script src="plugin/markdown/markdown.js"></script>
+        <script src="plugin/highlight/highlight.js"></script>
+        <script src="plugin/highlight/lean.min.js"></script>
+        <script src="plugin/highlight/lean-goal.js"></script>
+        <script src="plugin/math/math.js"></script>
+        <script>
+            // Also available as an ES module, see:
+            // https://revealjs.com/initialization/
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                center: true,
+                hash: true,
+                margin: 0,
+        
+                // Learn about plugins: https://revealjs.com/plugins/
+                plugins: [ RevealZoom, RevealNotes, RevealSearch, RevealMarkdown, RevealHighlight, RevealMath.KaTeX ],
+        
+                // Add the markdown option with the preprocess function
+                markdown: {
+                    preprocess: function(markdown) {
+                        // Replace all occurrences of [[...]] with the desired span
+                        console.log("Preprocess function is called");
+                        return markdown.replace(/\[\[(.*?)\]\]/g, function(match, p1) {
+                            return '<span style="text-transform: none; color: #000000">' + p1 + '</span>';
+                        });
+                    }
+                },
+                math: {
+                    // Math configuration for KaTeX
+                    tex: {
+                        inlineMath: [['$', '$'], ['\\(', '\\)']],
+                        displayMath: [['$$', '$$'], ['\\[', '\\]']]
+                    }
+                }
+            });
+        </script>
+        
+    </body>
+</html>
